@@ -4,3 +4,5 @@ extern "C" __declspec(dllexport) float __stdcall ApplyOverdriveFilter(float samp
 extern "C" __declspec(dllexport) float __stdcall ApplyMachineSound(float sample, float step);
 extern "C" __declspec(dllexport) float __stdcall ApplyMachineSoundSine(float sample, float sampleIndex, float samplingFreq, float sineFreq);
 extern "C" __declspec(dllexport) float __stdcall ApplyMachineSound2Sine(float sample, float sampleIndex, float samplingFreq, float sine1Freq, float sine2Freq);
+
+extern "C" __declspec(dllexport) float __stdcall ModulateVoiceRobotic(float sample, float sampleIndex, float samplingFreq, float sineFreq);
