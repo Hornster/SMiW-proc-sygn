@@ -16,8 +16,12 @@ namespace WavProcessor
         [DllImport("LowPassFilterDll", CallingConvention = CallingConvention.StdCall)]
         static extern float ModulateVoiceRobotic(float sample, float sampleIndex, float samplingFreq, float sineFreq);
         
-        const int lowerBorderSineFreq = 120; //In Hertz
+        const int lowerBorderSineFreq = 177; //In Hertz
+        private static int currFreq = lowerBorderSineFreq;
         private const int upperBorderSineFreq = 1037;
+        private static bool freqComingDown = false;
+
+       
 
        /* public static float ChangeSineFrequency(float oldFreq)
         {
@@ -49,13 +53,15 @@ namespace WavProcessor
             {
                 using (var writer = new WaveFileWriter("newTestSound.wav", reader.WaveFormat))
                 {
-                    float samplingFreq = 44100.0f;
+                    int samplingFreq = reader.WaveFormat.SampleRate;
                     var count = reader.SampleCount;
-                    var processor = new Processor(reader.WaveFormat.SampleRate);
+                    //var processor = new Processor(reader.WaveFormat.SampleRate);
                     for (var i = 0; i < count; ++i)
                     {
+                        
                         var sampleFrame = reader.ReadNextSampleFrame();
-                        var sampleLeft = ModulateVoiceRobotic(sampleFrame[0], i, samplingFreq, lowerBorderSineFreq);
+                        var sampleLeft = ModulateVoiceRobotic(sampleFrame[0], i, samplingFreq, currFreq);
+                        
                         //var sampleRight = ApplyOverdriveFilter(sampleFrame[1]);
                         //processor.Process((sampleFrame[0], sampleFrame[1]));
                         writer.WriteSample(sampleLeft);
