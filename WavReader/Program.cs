@@ -16,7 +16,7 @@ namespace WavProcessor
         [DllImport("LowPassFilterDll", CallingConvention = CallingConvention.StdCall)]
         static extern float ModulateVoiceRobotic(float sample, float sampleIndex, float samplingFreq, float sineFreq);
 
-        private const int lowerBorderSineFreq = 420; //In Hertz
+        private const int lowerBorderSineFreq = 2345; //In Hertz
         private static int currFreq = lowerBorderSineFreq;
         private const int upperBorderSineFreq = 1037;
         private static bool freqComingDown = false;
