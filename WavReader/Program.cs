@@ -12,9 +12,14 @@ namespace WavProcessor
         static extern float ApplyMachineSoundSine(float sample, float sampleIndex, float samplingFreq, float sineFreq);
         [DllImport("LowPassFilterDll", CallingConvention = CallingConvention.StdCall)]
         static extern float ApplyMachineSound2Sine(float sample, float sampleIndex, float samplingFreq, float sine1Freq, float sine2Freq);
-
+        //Sample modulation
         [DllImport("LowPassFilterDll", CallingConvention = CallingConvention.StdCall)]
         static extern float ModulateVoiceRobotic(float sample, float sampleIndex, float samplingFreq, float sineFreq);
+        //Sample preparation
+        [DllImport("LowPassFilterDll", CallingConvention = CallingConvention.StdCall)]
+        static extern float NormalizeSample(int sample, int maxSampleCapacity);
+        [DllImport("LowPassFilterDll", CallingConvention = CallingConvention.StdCall)]
+        static extern int StrangifySample(float normalizedSample, int maxSampleCapacity);
 
         private const int lowerBorderSineFreq = 2345; //In Hertz
         private static int currFreq = lowerBorderSineFreq;
