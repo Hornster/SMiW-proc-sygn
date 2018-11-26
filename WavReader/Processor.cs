@@ -1,4 +1,6 @@
-﻿namespace WavProcessor
+﻿using System;
+
+namespace WavProcessor
 {
     using System.Runtime.InteropServices;
 
@@ -6,15 +8,18 @@
     {
         private const int MaxInsaneSampleHalved = 0x007fffff;
 
-        private const int LowerBorderSineFrequency = 2345;
+        private const int LowerBorderSineFrequency = 1052;
 
         private int currentFrequency = LowerBorderSineFrequency;
 
         private int samplingFrequency;
 
-        public Processor(int samplingFrequency)
+        
+
+        public Processor(int samplingFrequency, int modulationFreq)
         {
             this.samplingFrequency = samplingFrequency;
+            this.currentFrequency = modulationFreq;
         }
 
         public (float, float) Process((float, float) sample)
